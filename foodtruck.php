@@ -73,7 +73,7 @@
 
                 <td>
 
-                    <input type="number" name=" <?php echo $item->id ?> " min="1" max="99">
+                    <input type="number" name=" <?php echo $item->id ?> " min="0" max="99">
 
                       </select>
                   <br/>
