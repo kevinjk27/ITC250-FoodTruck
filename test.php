@@ -48,24 +48,19 @@
             if ($selected[$item->id] > 0) {
             $total = $total + ($selected[$item->id]*$item->price);
         }
+       
 
-        //tax calculation and output formatting
-        $tax= $total * .101;
-        $total_f = number_format($total, 2);
-        $tax_f = number_format($tax, 2);
-        $gtotal = $total_f + $tax_f;
-        $gtotal_f = number_format($gtotal, 2);
 
-      /*  
-        tax calculation and output formatting
+       
+       // tax calculation and output formatting
         $tax= ($total + $total_toppings) * .101;
         $total_f = number_format($total, 2);
-        $total_toppings = number_format((count(toppings[]) * 0.5), 2);
+        $total_toppings = number_format((count($value) * 0.5), 2);
         $tax_f = number_format($tax, 2);
         $gtotal = $total_f + $tax_f;
 
         $gtotal_f = number_format($gtotal, 2);
-*/
+
         }
           echo '<p>Subtotal: $' . $total_f . '</p>';
           echo '<p>Taxes: $' . $tax_f . '</p>';
@@ -103,7 +98,8 @@
       
             
         foreach($newitems as $item) {
-            foreach ($item->toppings as $value) {
+
+                foreach ($item->toppings as $value) {
           echo '
           
             <tr style="border-style: ridge">
@@ -117,7 +113,8 @@
             </tr>
             
             ';
-        }
+            }
+    
     }
 
 		echo '
