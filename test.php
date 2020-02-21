@@ -26,6 +26,7 @@
     $Items->addtoppings("Avocado");
     $Items->addtoppings("Hard Boiled Egg");
     $newitems[]=$Items;
+ 
 
     $Items=new Item(5, "Smoothies", 3.95, "Mixed Fresh Fruit Shake");
     $Items->addtoppings("Pomegranate Seeds");
@@ -33,8 +34,6 @@
     $Items->addtoppings("Wolfberry");
     $newitems[]=$Items;
 
-    foreach ($Items as $value) {
-        echo $value;}
 
 
     //item class & constructor
@@ -51,16 +50,22 @@
         }
 
         //tax calculation and output formatting
-        //$tax= ($total + $total_toppings) * .101;
+        $tax= $total * .101;
         $total_f = number_format($total, 2);
-        // $total_toppings = number_format((count(toppings[]) * 0.5), 2);
+        $tax_f = number_format($tax, 2);
+        $gtotal = $total_f + $tax_f;
+        $gtotal_f = number_format($gtotal, 2);
+
+      /*  
+        tax calculation and output formatting
+        $tax= ($total + $total_toppings) * .101;
+        $total_f = number_format($total, 2);
+        $total_toppings = number_format((count(toppings[]) * 0.5), 2);
         $tax_f = number_format($tax, 2);
         $gtotal = $total_f + $tax_f;
 
-        
-        // 
         $gtotal_f = number_format($gtotal, 2);
-
+*/
         }
           echo '<p>Subtotal: $' . $total_f . '</p>';
           echo '<p>Taxes: $' . $tax_f . '</p>';
@@ -95,18 +100,22 @@
         <td> <b>Quantity</b> </td>
         </tr>';
 
+      
+            
         foreach($newitems as $item) {
-
+            foreach ($Items->toppings as $value) {
+            
           echo '
             <tr>
                 <td>  '. $item->name .'</td>
                 <td>  '. $item->description .'</td>
                 <td> $'.$item->price.'</td>
-                <td>  '.$item->$toppings.'</td>
+                <td> <input type="checkbox" name="toppings[]" value="0.5"/>'.$value.'</td>
                 <td> <input type="number" name="'.$item->id.'" min="0" max="99"><br/></td>
             </tr>
             ';
         }
+    }
 
 		echo '
 	    <tr><td><input type = "submit" name = "selected" value ="Submit"></td> </tr>
