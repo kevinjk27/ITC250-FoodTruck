@@ -6,8 +6,11 @@ class Item {
     public $id;
     public $description='';
     public $price=0.00;
-    public $quantity=0;
+    // public $quantity=0;
+    public $toppings=array();
 
+
+    //the constructor is the order is set up here..
     public function __construct($id, $iname, $iprice, $idesc) {
         $this->id = $id;
         $this->name = $iname;
@@ -15,6 +18,9 @@ class Item {
         $this->price = $iprice;
 
     } #end Item constructor
-}#end Item class
 
- ?>
+    public function addtoppings($topping){
+        $this->toppings[]=$topping;
+
+    }
+}#end Item class

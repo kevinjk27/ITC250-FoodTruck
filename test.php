@@ -3,11 +3,38 @@
 
     include 'class.php';
 
-    $Items[]=new Item(1, "Salad Bowl", 4.95, "Organic Baby Spring Mix");
-    $Items[]=new Item(2, "Fruit Bowl", 3.95, "Organic Seasonal Fruit Mix");
-    $Items[]=new Item(3, "Quinoa Bowl", 5.95, "A mix red and white quinoa");
-    $Items[]=new Item(4, "Poke Bowl", 5.95, "A bowl of rice with sashimi");
-    $Items[]=new Item(5, "Smoothies", 3.95, "Mixed Fresh Fruit Shake");
+    $Items=new Item(1, "Salad Bowl", 4.95, "Organic Baby Spring Mix");
+    $Items->addtoppings("Cheese");
+    $Items->addtoppings("Bell Pepper");
+    $Items->addtoppings("Corn");
+    $newitems[]=$Items;
+
+    $Items=new Item(2, "Fruit Bowl", 3.95, "Organic Seasonal Fruit Mix");
+    $Items->addtoppings("Almond sprinkles");
+    $Items->addtoppings("Coconut chips");
+    $Items->addtoppings("Ice Cream");
+    $newitems[]=$Items;
+
+    $Items=new Item(3, "Quinoa Bowl", 5.95, "A mix red and white quinoa");
+    $Items->addtoppings("Sunflower Seeds");
+    $Items->addtoppings("Cucumber");
+    $Items->addtoppings("Sprout");
+    $newitems[]=$Items;
+
+    $Items=new Item(4, "Poke Bowl", 5.95, "A bowl of rice with sashimi");
+    $Items->addtoppings("Edamame");
+    $Items->addtoppings("Avocado");
+    $Items->addtoppings("Hard Boiled Egg");
+    $newitems[]=$Items;
+
+    $Items=new Item(5, "Smoothies", 3.95, "Mixed Fresh Fruit Shake");
+    $Items->addtoppings("Pomegranate Seeds");
+    $Items->addtoppings("Chia Seeds");
+    $Items->addtoppings("Wolfberry");
+    $newitems[]=$Items;
+
+    foreach ($Items as $value) {
+        echo $value;}
 
 
     //item class & constructor
@@ -18,16 +45,20 @@
         $total=0;
 
 
-        foreach($items as $item) {
+        foreach($newitems as $item) {
             if ($selected[$item->id] > 0) {
             $total = $total + ($selected[$item->id]*$item->price);
         }
 
         //tax calculation and output formatting
-        $tax= $total * .101;
+        //$tax= ($total + $total_toppings) * .101;
         $total_f = number_format($total, 2);
+        // $total_toppings = number_format((count(toppings[]) * 0.5), 2);
         $tax_f = number_format($tax, 2);
         $gtotal = $total_f + $tax_f;
+
+        
+        // 
         $gtotal_f = number_format($gtotal, 2);
 
         }
@@ -41,7 +72,7 @@
 	<html>
     <head>
       <title>Food Truck</title>
-      <link rel="stylesheet" type="text/css" href="styles.css">
+      <link rel="stylesheet" type="text/css" href="css/style.css">
       <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.2/css/all.css">
     </head>
 <body>
@@ -60,26 +91,19 @@
         <td> <b>Item<b> </td>
         <td> <b>Description</b> </td>
         <td> <b>Price</b>     </td>
+        <td> <b>Toppings</b>     </td>
         <td> <b>Quantity</b> </td>
         </tr>';
 
-        foreach($Items as $item) {
+        foreach($newitems as $item) {
 
           echo '
             <tr>
                 <td>  '. $item->name .'</td>
-                <td>  '. $item->description .'
-                </td>
-                <td>   $'.$item->price.'
-                </td>
-
-                <td>
-
-                    <input type="number" name="'.$item->id.'" min="0" max="99">
-
-                      </select>
-                  <br/>
-                </td>
+                <td>  '. $item->description .'</td>
+                <td> $'.$item->price.'</td>
+                <td>  '.$item->$toppings.'</td>
+                <td> <input type="number" name="'.$item->id.'" min="0" max="99"><br/></td>
             </tr>
             ';
         }
