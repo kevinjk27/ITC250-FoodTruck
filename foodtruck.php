@@ -105,7 +105,7 @@
         <td> <b>Description</b> </td>
         <td> <b>Price</b>     </td>
         <td> <b>Quantity</b>     </td>
-        <td> <b>Any Extras?</b> </td>
+        <td> <b>Any Extras? $0.50 </b> </td>
         </tr>';
 
 
@@ -140,6 +140,10 @@
             echo'<br>';
         }
     ?>
-
+	<br>
+        <div class="links">
+            <a class="link" href="https://docs.google.com/document/d/1BrQ3gpuYSc-njv8WRk09qfZGpuWPiCebkpfh0hPUNF0/edit?ts=5e3a1c5c">Work Log</a><br /><br />
+            <a class="link" href="https://github.com/kevinjk27/ITC250-FoodTruck">GitHub Repo</a>
+        </div>
     <body>
 </html>
