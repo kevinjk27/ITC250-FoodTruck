@@ -7,11 +7,11 @@
     $Items->addtoppings("Cheese");
     $Items->addtoppings("Bell Pepper");
     $Items->addtoppings("Corn");
-    $newitems[]=$Items;
+   $newitems[]=$Items;
 
     $Items=new Item(2, "Fruit Bowl", 3.95, "Organic Seasonal Fruit Mix");
-    $Items->addtoppings("Almond sprinkles");
-    $Items->addtoppings("Coconut chips");
+    $Items->addtoppings("Almond Sprinkles");
+    $Items->addtoppings("Coconut Chips");
     $Items->addtoppings("Ice Cream");
     $newitems[]=$Items;
 
@@ -26,7 +26,7 @@
     $Items->addtoppings("Avocado");
     $Items->addtoppings("Hard Boiled Egg");
     $newitems[]=$Items;
- 
+
 
     $Items=new Item(5, "Smoothies", 3.95, "Mixed Fresh Fruit Shake");
     $Items->addtoppings("Pomegranate Seeds");
@@ -37,25 +37,38 @@
 
 
     //item class & constructor
-
+    // echo'
+    // <pre>
+    // '.var_dump($Items).'
+    // </pre>';
 
     //Function to calculate the total
-    function Total($selected, $items) {
+    function Total($selected, $newitems) {
         $total=0;
-
+        $total_toppings = 0;
 
         foreach($newitems as $item) {
             if ($selected[$item->id] > 0) {
             $total = $total + ($selected[$item->id]*$item->price);
+
+            if(isset($selected['Topping1']) ){
+              $total += 0.50 * $selected[$item->id];
+            }
+            if(isset($selected['Topping2']) ){
+              $total += 0.50 * $selected[$item->id];
+            }
+            if(isset($selected['Topping3']) ){
+              $total += 0.50 * $selected[$item->id];
+            }
         }
-       
 
 
-       
+
+
        // tax calculation and output formatting
-        $tax= ($total + $total_toppings) * .101;
+        $tax= ($total) * .101;
         $total_f = number_format($total, 2);
-        $total_toppings = number_format((count($value) * 0.5), 2);
+      //  $total_toppings = number_format((count($value) * 0.5), 2);
         $tax_f = number_format($tax, 2);
         $gtotal = $total_f + $tax_f;
 
@@ -91,30 +104,31 @@
         <td> <b>Item<b> </td>
         <td> <b>Description</b> </td>
         <td> <b>Price</b>     </td>
-        <td> <b>Toppings</b>     </td>
-        <td> <b>Quantity</b> </td>
+        <td> <b>Quantity</b>     </td>
+        <td> <b>Any Extras?</b> </td>
         </tr>';
 
-      
-            
+
+
         foreach($newitems as $item) {
 
+          echo'
+          <tr style="border-style: ridge">
+              <td>  '. $item->name .'</td>
+              <td>  '. $item->description .'</td>
+              <td> $'.$item->price.'</td>
+              <td> <input type="number" name="'.$item->id.'" min="0" max="99"><br/></td> <td>';
+
+                $i = 1;
                 foreach ($item->toppings as $value) {
           echo '
-          
-            <tr style="border-style: ridge">
-            
-                <td>  '. $item->name .'</td>
-                <td>  '. $item->description .'</td>
-                <td> $'.$item->price.'</td>
-                <td> <input type="checkbox" name="toppings[]" value="0.5"/>'.$value.'</td>
-                <td> <input type="number" name="'.$item->id.'" min="0" max="99"><br/></td>
-                
-            </tr>
-            
-            ';
+             <input type="checkbox" name="Topping'. $i .'" value="0.5"/>'. $value. '<br>';
+            $i++;
             }
-    
+
+          echo'
+          </td>
+          </tr>';
     }
 
 		echo '
@@ -122,7 +136,7 @@
 	   	</table>
     	</form>   ';
         } else {
-            Total($_POST, $Items);
+            Total($_POST, $newitems);
             echo'<br>';
         }
     ?>
