@@ -38,10 +38,7 @@
 
 
     //item class & constructor
-    // echo'
-    // <pre>
-    // '.var_dump($Items).'
-    // </pre>';
+
 
     //Function to calculate the total
     function Total($selected, $newitems) {
@@ -68,7 +65,12 @@
 
             $total += $total_toppings;
         }
-
+    //     echo $selected[$item->id];
+    // echo'
+    // <pre>
+    // '.var_dump($selected[$item->id]).'
+    // '.gettype($selected[$item->id]).'
+    // </pre>';
 
 
 
@@ -82,13 +84,18 @@
         $gtotal_f = number_format($gtotal, 2);
 
         }
+
+
             echo '<h1>Thank You for your order!</h1>';
             echo '<h3>Order Details :</h3>';
-
-
-          foreach ($bought as $boughtitem){
-           echo'<p>'.$boughtitem.' for '.$selected[$item->id].' bowls please!</p>';
-      }
+            $m=1;
+            if(isset($_POST[$m])){
+                foreach ($bought as $boughtitem){
+                echo'<p>'.$boughtitem.' for '.$_POST[$m].' bowls please!</p>';
+           $m++;
+    }
+  }
+    echo $selected[$item->id];
           echo '<p>Subtotal: $' . $total_f . '</p>';
           echo '<p>Subtotal (Extra toppings): $' . $total_toppings . '</p>';
           echo '<p>Taxes: $' . $tax_f . '</p>';
