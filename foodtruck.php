@@ -1,3 +1,4 @@
+  
 <?php
     //item order page
 
@@ -61,6 +62,10 @@
               $total_toppings += 0.50 * $selected[$item->id];
             }
 
+            if(isset($selected[$item->id]) ){
+                $bought[] = $item->name;
+              }
+
             $total += $total_toppings;
         }
 
@@ -77,6 +82,13 @@
         $gtotal_f = number_format($gtotal, 2);
 
         }
+            echo '<h1>Thank You for your order!</h1>';
+            echo '<h3>Order Details :</h3>';
+
+
+          foreach ($bought as $boughtitem){
+           echo'<p>'.$boughtitem.' for '.$selected[$item->id].' bowls please!</p>';
+      }
           echo '<p>Subtotal: $' . $total_f . '</p>';
           echo '<p>Subtotal (Extra toppings): $' . $total_toppings . '</p>';
           echo '<p>Taxes: $' . $tax_f . '</p>';
