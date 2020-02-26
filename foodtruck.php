@@ -52,14 +52,16 @@
             $total = $total + ($selected[$item->id]*$item->price);
 
             if(isset($selected['Topping1']) ){
-              $total += 0.50 * $selected[$item->id];
+              $total_toppings += 0.50 * $selected[$item->id];
             }
             if(isset($selected['Topping2']) ){
-              $total += 0.50 * $selected[$item->id];
+              $total_toppings += 0.50 * $selected[$item->id];
             }
             if(isset($selected['Topping3']) ){
-              $total += 0.50 * $selected[$item->id];
+              $total_toppings += 0.50 * $selected[$item->id];
             }
+
+            $total += $total_toppings;
         }
 
 
@@ -68,7 +70,7 @@
        // tax calculation and output formatting
         $tax= ($total) * .101;
         $total_f = number_format($total, 2);
-      //  $total_toppings = number_format((count($value) * 0.5), 2);
+        $total_toppings = number_format($total_toppings, 2);
         $tax_f = number_format($tax, 2);
         $gtotal = $total_f + $tax_f;
 
@@ -76,6 +78,7 @@
 
         }
           echo '<p>Subtotal: $' . $total_f . '</p>';
+          echo '<p>Subtotal (Extra toppings): $' . $total_toppings . '</p>';
           echo '<p>Taxes: $' . $tax_f . '</p>';
           echo '<p>Order total: $' . $gtotal_f . '</p>';
           echo '<p>Thank you! &#128525;</p>';
@@ -122,7 +125,7 @@
                 $i = 1;
                 foreach ($item->toppings as $value) {
           echo '
-             <input type="checkbox" name="Topping'. $i .'" value="0.5"/>'. $value. '<br>';
+             <input type="checkbox" name="Topping'. $i .'" value="0.5"/>'. $value. ' 	$0.50<br>';
             $i++;
             }
 
