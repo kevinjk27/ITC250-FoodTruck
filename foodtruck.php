@@ -1,4 +1,3 @@
-  
 <?php
     //item order page
 
@@ -59,11 +58,12 @@
               $total_toppings += 0.50 * $selected[$item->id];
             }
 
-            if(isset($selected[$item->id]) ){
-                $bought[] = $item->name;
-              }
+        
 
             $total += $total_toppings;
+        }
+        if(isset($selected[$item->id]) ){
+          $bought[] = $item->name;
         }
     //     echo $selected[$item->id];
     // echo'
@@ -88,6 +88,7 @@
 
             echo '<h1>Thank You for your order!</h1>';
             echo '<h3>Order Details :</h3>';
+
             $m=1;
             if(isset($_POST[$m])){
                 foreach ($bought as $boughtitem){
@@ -95,6 +96,8 @@
            $m++;
     }
   }
+   
+              
     echo $selected[$item->id];
           echo '<p>Subtotal: $' . $total_f . '</p>';
           echo '<p>Subtotal (Extra toppings): $' . $total_toppings . '</p>';
