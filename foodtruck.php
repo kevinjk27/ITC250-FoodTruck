@@ -88,14 +88,13 @@
 
             echo '<h1>Thank You for your order!</h1>';
             echo '<h3>Order Details :</h3>';
-
             $m=1;
             if(isset($_POST[$m])){
-                foreach ($bought as $boughtitem){
-                echo'<p>'.$boughtitem.' for '.$_POST[$m].' bowls please!</p>';
-           $m++;
+            foreach ($bought as $boughtitem){
+                  echo'<p>'.$boughtitem.' for '.$_POST[$m].' bowls please!</p>';
+                  $m++;
     }
-  }
+}
    
               
     echo $selected[$item->id];
