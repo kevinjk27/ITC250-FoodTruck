@@ -61,11 +61,13 @@
               $total_toppings += 0.50 * $selected[$item->id];
             }
 
-            $total += $total_toppings;
+
         }
+      }
 
+        $total_without_toppins = number_format($total, 2);
 
-
+        $total += $total_toppings;
 
        // tax calculation and output formatting
         $tax= ($total) * .101;
@@ -76,8 +78,8 @@
 
         $gtotal_f = number_format($gtotal, 2);
 
-        }
-          echo '<p>Subtotal: $' . $total_f . '</p>';
+
+          echo '<p>Subtotal: $' . $total_without_toppins . '</p>';
           echo '<p>Subtotal (Extra toppings): $' . $total_toppings . '</p>';
           echo '<p>Taxes: $' . $tax_f . '</p>';
           echo '<p>Order total: $' . $gtotal_f . '</p>';
@@ -143,10 +145,12 @@
             echo'<br>';
         }
     ?>
+
 	<br>
         <div class="links">
             <a class="link" href="https://docs.google.com/document/d/1BrQ3gpuYSc-njv8WRk09qfZGpuWPiCebkpfh0hPUNF0/edit?ts=5e3a1c5c">Work Log</a><br /><br />
             <a class="link" href="https://github.com/kevinjk27/ITC250-FoodTruck">GitHub Repo</a>
         </div>
+
     <body>
 </html>
