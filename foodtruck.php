@@ -36,12 +36,6 @@
 
 
 
-    //item class & constructor
-    // echo'
-    // <pre>
-    // '.var_dump($Items).'
-    // </pre>';
-
     //Function to calculate the total
     function Total($postVariable, $newitems) {
         $total=0;
@@ -61,22 +55,9 @@
 
               $total_toppings += 0.5 * (int)$postVariable[$item->id];
 
+                }
               }
             }
-
-            }
-            // for(i)
-            // if(isset($postVariable['Topping1']) ){
-            //   $total_toppings += 0.50 * (int)$postVariable[$item->id];
-            // }
-            // if(isset($postVariable['Topping2']) ){
-            //   $total_toppings += 0.50 * (int)$postVariable[$item->id];
-            // }
-            // if(isset($postVariable['Topping3']) ){
-            //   $total_toppings += 0.50 * (int)$postVariable[$item->id];
-            // }
-
-
 
 
       }
