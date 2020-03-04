@@ -36,33 +36,30 @@
 
 
 
-    //item class & constructor
-    // echo'
-    // <pre>
-    // '.var_dump($Items).'
-    // </pre>';
-
     //Function to calculate the total
-    function Total($selected, $newitems) {
+    function Total($postVariable, $newitems) {
         $total=0;
         $total_toppings = 0;
 
         foreach($newitems as $item) {
-            if ($selected[$item->id] > 0) {
-            $total = $total + ($selected[$item->id]*$item->price);
 
-            if(isset($selected['Topping1']) ){
-              $total_toppings += 0.50 * $selected[$item->id];
-            }
-            if(isset($selected['Topping2']) ){
-              $total_toppings += 0.50 * $selected[$item->id];
-            }
-            if(isset($selected['Topping3']) ){
-              $total_toppings += 0.50 * $selected[$item->id];
+            if ($postVariable[$item->id] > 0) {
+
+            $total = $total + ($postVariable[$item->id]*$item->price);
+
+            for ($x = 1; $x <= 3; $x++){
+
+              $ExtraVariable = 'Topping' . $x . $item->id;
+
+              if(isset($postVariable[$ExtraVariable])){
+
+              $total_toppings += 0.5 * (int)$postVariable[$item->id];
+
+                }
+              }
             }
 
 
-        }
       }
 
         $total_without_toppins = number_format($total, 2);
@@ -127,7 +124,7 @@
                 $i = 1;
                 foreach ($item->toppings as $value) {
           echo '
-             <input type="checkbox" name="Topping'. $i .'" value="0.5"/>'. $value. ' 	$0.50<br>';
+             <input type="checkbox" name="Topping'. $i . $item->id .'" value="0.5"/>'. $value. ' 	$0.50<br>';
             $i++;
             }
 
